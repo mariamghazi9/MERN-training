@@ -1,15 +1,14 @@
-import { Button } from "@mui/material";
 import React, { useState } from "react";
 import "./login.css";
 
 const Login = () => {
 
   const [error, setError] = useState({ email: "", password: "" });
-  const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState(false);
 
 
   const add = () => {
-    setSuccess("Logged in successfully!")
+    setSuccess(true)
   };
 
   const change = (event) => {
@@ -34,7 +33,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="header" >
+      <div className="head" >
         <label>Username</label><br/>
         <input
           type="text"
@@ -45,6 +44,7 @@ const Login = () => {
         <small style={{ color: "red" }}>{error.email}</small>
 
         <br></br>
+        <br/>
 
         <label>Password</label><br/>
         <input
@@ -53,9 +53,9 @@ const Login = () => {
           placeholder="enter your pass"
           onChange={change}
         /><br/>
-        <small style={{ color: "red" }}>{error.password}</small><br/>
-        <Button onClick={add} className="addBtn">Login</Button>
-        <label>{success}</label>
+        <small style={{ color: "red" }}>{error.password}</small><br/><br/>
+        <span onClick={add} className="btn">Login</span><br/>
+        {success && <label>Logged in Successfully!</label>}
       </div>
     </>
   );
